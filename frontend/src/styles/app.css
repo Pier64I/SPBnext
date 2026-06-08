@@ -380,6 +380,11 @@ p {
   z-index: 1;
 }
 
+.home-copy {
+  align-self: end;
+  padding-bottom: 34px;
+}
+
 .home-copy h1 {
   margin-bottom: 14px;
   color: #fff;

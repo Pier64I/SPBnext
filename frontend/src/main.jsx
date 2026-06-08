@@ -115,12 +115,6 @@ function Home() {
     <section className="home-stage">
       <div className="home-hero">
         <div className="home-copy">
-          <h1>
-            <span>{t.hero.titleAccent}</span>
-            {t.hero.titleMain}
-          </h1>
-          <p>{t.hero.subtitle}</p>
-          <strong>{t.hero.promise}</strong>
           <div className="actions">
             <Link className="btn primary" to="/contact"><Mail size={18} />{t.cta.info}</Link>
             <Link className="btn orange" to="/support"><Headphones size={18} />{t.cta.ticket}</Link>
