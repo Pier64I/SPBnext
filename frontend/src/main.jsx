@@ -27,7 +27,7 @@ function AppShell() {
     <LanguageContext.Provider value={value}>
       <header className="site-header">
         <Link to="/" className="brand" aria-label="SPBnext home">
-          <span className="brand-mark">SPB</span>
+          <img className="brand-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
           <span>SPBnext</span>
         </Link>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">

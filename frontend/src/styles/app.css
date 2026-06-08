@@ -1,16 +1,18 @@
 :root {
   color-scheme: light;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --bg: #f5f7fb;
+  --bg: #fbf7ff;
   --panel: #ffffff;
-  --ink: #132033;
-  --muted: #5d6b7e;
-  --line: #dce3ee;
-  --brand: #0f766e;
-  --brand-dark: #115e59;
-  --accent: #2563eb;
-  --soft: #e6f4f1;
-  --shadow: 0 18px 45px rgba(19, 32, 51, 0.11);
+  --ink: #231431;
+  --muted: #6c5b78;
+  --line: #eadff0;
+  --brand: #6d28d9;
+  --brand-dark: #4c1d95;
+  --accent: #f97316;
+  --magenta: #db2777;
+  --soft: #f5e8ff;
+  --warm-soft: #fff3e7;
+  --shadow: 0 18px 45px rgba(76, 29, 149, 0.14);
 }
 
 * {
@@ -50,14 +52,12 @@ a {
   letter-spacing: 0;
 }
 
-.brand-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--brand), var(--accent));
+.brand-logo {
+  width: 92px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
 }
 
 .main-nav {
@@ -110,7 +110,9 @@ button {
   padding: clamp(48px, 8vw, 112px) clamp(18px, 5vw, 72px);
   color: #fff;
   background:
-    linear-gradient(100deg, rgba(7, 21, 34, 0.92), rgba(13, 63, 80, 0.72)),
+    radial-gradient(circle at 80% 18%, rgba(249, 115, 22, 0.55), transparent 28%),
+    radial-gradient(circle at 50% 8%, rgba(219, 39, 119, 0.45), transparent 32%),
+    linear-gradient(102deg, rgba(35, 20, 49, 0.95), rgba(91, 33, 182, 0.82)),
     url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=80") center/cover;
 }
 
@@ -156,7 +158,7 @@ p {
 }
 
 .hero .eyebrow {
-  color: #76e4d5;
+  color: #fed7aa;
 }
 
 .actions {
@@ -182,8 +184,9 @@ p {
 
 .btn.primary {
   color: #fff;
-  border-color: var(--brand);
-  background: var(--brand);
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--magenta), var(--accent));
+  box-shadow: 0 12px 24px rgba(219, 39, 119, 0.22);
 }
 
 .btn.subtle {
@@ -217,9 +220,10 @@ p {
 .metric-card,
 .admin-module {
   border: 1px solid var(--line);
+  border-top: 3px solid rgba(219, 39, 119, 0.32);
   border-radius: 8px;
   background: var(--panel);
-  box-shadow: 0 8px 24px rgba(19, 32, 51, 0.06);
+  box-shadow: 0 8px 24px rgba(76, 29, 149, 0.08);
 }
 
 .service-card {
@@ -234,7 +238,7 @@ p {
 }
 
 .service-card svg {
-  color: var(--brand);
+  color: var(--magenta);
 }
 
 .two-column {
@@ -274,7 +278,7 @@ p {
   padding: 24px;
   border-radius: 8px;
   color: #fff;
-  background: linear-gradient(135deg, #123044, #0f766e);
+  background: linear-gradient(135deg, var(--brand-dark), var(--magenta), var(--accent));
 }
 
 .contact-band p {
@@ -304,7 +308,7 @@ p {
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--brand-dark);
-  background: var(--soft);
+  background: linear-gradient(135deg, var(--soft), var(--warm-soft));
   font-weight: 700;
 }
 
@@ -368,7 +372,7 @@ p {
 }
 
 .metric-card svg {
-  color: var(--accent);
+  color: var(--magenta);
 }
 
 .metric-card strong {
@@ -391,7 +395,7 @@ p {
   justify-content: space-between;
   gap: 24px;
   padding: 32px clamp(18px, 5vw, 72px);
-  background: #132033;
+  background: #231431;
   color: #fff;
 }
 
