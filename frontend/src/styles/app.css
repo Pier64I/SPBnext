@@ -690,6 +690,108 @@ p {
   font-size: 1.1rem;
 }
 
+.service-detail-page {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.service-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+  gap: 36px;
+  align-items: center;
+}
+
+.service-detail-hero h1 {
+  color: var(--ink);
+}
+
+.service-detail-hero > div > p {
+  font-size: 1.16rem;
+}
+
+.service-detail-hero img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.service-info-grid,
+.service-process,
+.legal-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.service-info-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.service-info-grid article,
+.service-process article,
+.legal-grid article,
+.service-final-cta {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(76, 29, 149, 0.08);
+}
+
+.service-info-grid article,
+.legal-grid article {
+  padding: 22px;
+}
+
+.service-info-grid h2,
+.legal-grid h2 {
+  font-size: 1.22rem;
+}
+
+.service-process {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.service-process article {
+  padding: 18px;
+}
+
+.service-process span {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--magenta);
+  font-weight: 900;
+}
+
+.service-process h3 {
+  margin-bottom: 0;
+}
+
+.service-final-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fff, var(--soft), var(--warm-soft));
+}
+
+.service-final-cta p {
+  margin-bottom: 0;
+}
+
+.legal-page {
+  max-width: 980px;
+}
+
+.legal-grid {
+  grid-template-columns: 1fr;
+}
+
 .feature-list,
 .status-list {
   display: flex;
@@ -849,6 +951,17 @@ p {
   }
 
   .site-footer {
+    flex-direction: column;
+  }
+
+  .service-detail-hero,
+  .service-info-grid,
+  .service-process {
+    grid-template-columns: 1fr;
+  }
+
+  .service-final-cta {
+    align-items: stretch;
     flex-direction: column;
   }
 }

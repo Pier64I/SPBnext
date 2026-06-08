@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
 import {
   Activity,
   BarChart3,
@@ -90,6 +90,8 @@ function AppShell() {
           <Route path="/register" element={<Register />} />
           <Route path="/client" element={<ClientArea />} />
           <Route path="/admin" element={<AdminArea />} />
+          <Route path="/privacy" element={<LegalPage type="privacy" />} />
+          <Route path="/terms" element={<LegalPage type="terms" />} />
         </Routes>
       </main>
       <Footer />
@@ -267,19 +269,58 @@ function Services() {
 
 function ServiceDetail() {
   const { slug } = useParams();
-  const { language } = useLang();
+  const { language, t } = useLang();
   const service = services[language][slug] || services[language][serviceSlugs[0]];
+  const media = servicePageMedia[slug] || servicePageMedia.servizi;
   return (
-    <section className="section detail">
-      <p className="eyebrow">SPBnext services</p>
-      <h1>{service.title}</h1>
-      <p>{service.body}</p>
-      <div className="feature-list">
-        {service.features.map((feature) => <span key={feature}>{feature}</span>)}
+    <section className="service-detail-page">
+      <div className="service-detail-hero">
+        <div>
+          <p className="eyebrow">SPBnext services</p>
+          <h1>{service.title}</h1>
+          <p>{service.body}</p>
+          <div className="feature-list">
+            {service.features.map((feature) => <span key={feature}>{feature}</span>)}
+          </div>
+          <div className="actions">
+            <Link className="btn primary" to={`/contact?area=${slug}`}><Mail size={18} />{t.cta.info}</Link>
+            <Link className="btn orange" to={`/support?category=${slug}`}><Headphones size={18} />{t.cta.ticket}</Link>
+            <Link className="btn outline" to="/register"><UserPlus size={18} />{t.cta.register}</Link>
+          </div>
+        </div>
+        <img src={media.image} alt={service.title} />
       </div>
-      <div className="actions">
-        <Link className="btn primary" to="/contact">Richiedi informazioni</Link>
-        <Link className="btn" to="/support">Apri ticket</Link>
+
+      <div className="service-info-grid">
+        <article>
+          <h2>{t.servicePage.whatTitle}</h2>
+          <p>{t.servicePage.whatText}</p>
+        </article>
+        <article>
+          <h2>{t.servicePage.methodTitle}</h2>
+          <p>{t.servicePage.methodText}</p>
+        </article>
+        <article>
+          <h2>{t.servicePage.supportTitle}</h2>
+          <p>{t.servicePage.supportText}</p>
+        </article>
+      </div>
+
+      <div className="service-process">
+        {t.servicePage.steps.map((step, index) => (
+          <article key={step}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step}</h3>
+          </article>
+        ))}
+      </div>
+
+      <div className="service-final-cta">
+        <div>
+          <h2>{t.servicePage.finalTitle}</h2>
+          <p>{t.servicePage.finalText}</p>
+        </div>
+        <Link className="btn primary" to={`/contact?area=${slug}`}>{t.cta.info}</Link>
       </div>
     </section>
   );
@@ -287,6 +328,7 @@ function ServiceDetail() {
 
 function Support() {
   const { t } = useLang();
+  const category = new URLSearchParams(useLocation().search).get("category") || "altro";
   return (
     <section className="section two-column">
       <div>
@@ -297,7 +339,7 @@ function Support() {
           {t.support.publicPoints.map((item) => <span key={item}>{item}</span>)}
         </div>
       </div>
-      <TicketForm />
+      <TicketForm defaultCategory={category} />
     </section>
   );
 }
@@ -326,6 +368,7 @@ function News() {
 
 function Contact() {
   const { t, language } = useLang();
+  const area = new URLSearchParams(useLocation().search).get("area") || "";
   return (
     <section className="section two-column">
       <div>
@@ -337,7 +380,7 @@ function Contact() {
         <ApiForm
           endpoint="/public/contact-requests"
           submitLabel={t.form.send}
-          initial={{ language, privacyAccepted: false }}
+          initial={{ language, interestArea: area, privacyAccepted: false }}
           fields={contactFields(t)}
         />
       </FormCard>
@@ -416,11 +459,11 @@ function AdminArea() {
   );
 }
 
-function TicketForm() {
+function TicketForm({ defaultCategory = "altro" }) {
   const { t } = useLang();
   return (
     <FormCard title={t.ticket.title}>
-      <ApiForm endpoint="/tickets" submitLabel={t.ticket.submit} initial={{ priority: "media", category: "altro" }} fields={ticketFields(t)} />
+      <ApiForm endpoint="/tickets" submitLabel={t.ticket.submit} initial={{ priority: "media", category: defaultCategory }} fields={ticketFields(t)} />
     </FormCard>
   );
 }
@@ -498,11 +541,31 @@ function Footer() {
         <p>P.IVA IT-05628310269 · <a href="mailto:info@spbnext.com">info@spbnext.com</a></p>
       </div>
       <nav>
-        <Link to="/contact">{t.footer.privacy}</Link>
-        <Link to="/contact">{t.footer.terms}</Link>
+        <Link to="/privacy">{t.footer.privacy}</Link>
+        <Link to="/terms">{t.footer.terms}</Link>
         <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
       </nav>
     </footer>
+  );
+}
+
+function LegalPage({ type }) {
+  const { t } = useLang();
+  const page = t.legal[type];
+  return (
+    <section className="section legal-page">
+      <p className="eyebrow">SPB NEXT</p>
+      <h1>{page.title}</h1>
+      <p>{page.intro}</p>
+      <div className="legal-grid">
+        {page.items.map((item) => (
+          <article key={item.title}>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -576,6 +639,36 @@ const languageFlag = {
   it: "🇮🇹",
   es: "🇪🇸",
   en: "🇬🇧"
+};
+
+const servicePageMedia = {
+  "reti-informatiche": {
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80"
+  },
+  elettronica: {
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
+  },
+  sicurezza: {
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1400&q=80"
+  },
+  automazione: {
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=80"
+  },
+  wms: {
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80"
+  },
+  "energia-green": {
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=80"
+  },
+  "portali-web": {
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80"
+  },
+  "programmi-app": {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+  },
+  servizi: {
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80"
+  }
 };
 
 function quickLinks(t) {

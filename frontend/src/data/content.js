@@ -125,6 +125,8 @@ function localeCopy(heroTitle, heroSubtitle, info, ticket, login, register) {
     serviceLabels: labels.serviceLabels,
     about: localizedHomeText(isEn, isEs).about,
     homeQuick: localizedHomeText(isEn, isEs).quick,
+    servicePage: localizedServicePageText(isEn, isEs),
+    legal: localizedLegalText(isEn, isEs),
     footer: labels.footer,
     newsItems: labels.newsItems
   };
@@ -189,6 +191,117 @@ function localizedHomeText(isEn, isEs) {
       securityText: "Proteggiamo dati, sistemi e processi aziendali.",
       innovationTitle: "Innovazione continua",
       innovationText: "Tecnologie avanzate per accompagnare la crescita."
+    }
+  };
+}
+
+function localizedServicePageText(isEn, isEs) {
+  if (isEn) {
+    return {
+      whatTitle: "What we deliver",
+      whatText: "A dedicated project page with clear scope, technical choices, integrations and measurable goals for the selected service area.",
+      methodTitle: "Operating method",
+      methodText: "We start from requirements, map the current situation, define priorities and deliver a practical implementation plan.",
+      supportTitle: "Support and continuity",
+      supportText: "Every solution can be connected to tickets, reserved documents, communications and remote assistance.",
+      steps: ["Analysis", "Design", "Implementation", "Testing", "Support"],
+      finalTitle: "Need a tailored proposal?",
+      finalText: "Send a request from this page and we will connect it to the correct service area."
+    };
+  }
+
+  if (isEs) {
+    return {
+      whatTitle: "Que realizamos",
+      whatText: "Una pagina dedicada con alcance claro, decisiones tecnicas, integraciones y objetivos medibles para el servicio seleccionado.",
+      methodTitle: "Metodo operativo",
+      methodText: "Partimos de los requisitos, analizamos la situacion actual, definimos prioridades y preparamos un plan concreto.",
+      supportTitle: "Soporte y continuidad",
+      supportText: "Cada solucion puede conectarse con tickets, documentos reservados, comunicaciones y asistencia remota.",
+      steps: ["Analisis", "Diseno", "Implementacion", "Pruebas", "Soporte"],
+      finalTitle: "Necesitas una propuesta a medida?",
+      finalText: "Envia una solicitud desde esta pagina y la conectaremos con el area correcta."
+    };
+  }
+
+  return {
+    whatTitle: "Cosa realizziamo",
+    whatText: "Una pagina dedicata con perimetro chiaro, scelte tecniche, integrazioni e obiettivi misurabili per l'area selezionata.",
+    methodTitle: "Metodo operativo",
+    methodText: "Partiamo dai requisiti, analizziamo la situazione attuale, definiamo priorita e prepariamo un piano concreto.",
+    supportTitle: "Supporto e continuita",
+    supportText: "Ogni soluzione puo essere collegata a ticket, documenti riservati, comunicazioni e assistenza remota.",
+    steps: ["Analisi", "Progettazione", "Implementazione", "Collaudo", "Supporto"],
+    finalTitle: "Vuoi una proposta su misura?",
+    finalText: "Invia una richiesta da questa pagina e la collegheremo direttamente all'area corretta."
+  };
+}
+
+function localizedLegalText(isEn, isEs) {
+  if (isEn) {
+    return {
+      privacy: {
+        title: "Privacy",
+        intro: "This page is a base placeholder and can be customized with the final legal text.",
+        items: [
+          { title: "Data controller", text: "SPB NEXT di Fabiola Vergas Barrera, VAT IT-05628310269, info@spbnext.com." },
+          { title: "Requests", text: "Contact and ticket data are used to answer requests and provide reserved services." },
+          { title: "Updates", text: "The final privacy policy can be replaced before public launch." }
+        ]
+      },
+      terms: {
+        title: "Terms",
+        intro: "Base terms page to be completed with final service conditions.",
+        items: [
+          { title: "Services", text: "The portal provides information, contact forms, tickets and reserved customer functions." },
+          { title: "Access", text: "Customer accounts are subject to administrator approval." },
+          { title: "Support", text: "Ticket priorities and response times can be configured in the admin area." }
+        ]
+      }
+    };
+  }
+
+  if (isEs) {
+    return {
+      privacy: {
+        title: "Privacidad",
+        intro: "Pagina base que se podra personalizar con el texto legal definitivo.",
+        items: [
+          { title: "Responsable", text: "SPB NEXT di Fabiola Vergas Barrera, IVA IT-05628310269, info@spbnext.com." },
+          { title: "Solicitudes", text: "Los datos de contacto y tickets se usan para responder y prestar servicios reservados." },
+          { title: "Actualizaciones", text: "La politica final puede sustituirse antes de la publicacion." }
+        ]
+      },
+      terms: {
+        title: "Terminos",
+        intro: "Pagina base de condiciones, lista para completar.",
+        items: [
+          { title: "Servicios", text: "El portal ofrece informacion, formularios, tickets y funciones reservadas." },
+          { title: "Acceso", text: "Las cuentas cliente requieren aprobacion del administrador." },
+          { title: "Soporte", text: "Prioridades y tiempos de respuesta se pueden configurar en admin." }
+        ]
+      }
+    };
+  }
+
+  return {
+    privacy: {
+      title: "Privacy",
+      intro: "Pagina base da personalizzare con il testo legale definitivo.",
+      items: [
+        { title: "Titolare", text: "SPB NEXT di Fabiola Vergas Barrera, P.IVA IT-05628310269, info@spbnext.com." },
+        { title: "Richieste", text: "I dati di contatto e ticket sono usati per rispondere alle richieste e fornire servizi riservati." },
+        { title: "Aggiornamenti", text: "La privacy definitiva potra essere sostituita prima della pubblicazione finale." }
+      ]
+    },
+    terms: {
+      title: "Termini",
+      intro: "Pagina base condizioni di servizio, pronta per essere completata.",
+      items: [
+        { title: "Servizi", text: "Il portale offre informazioni, moduli, ticket e funzioni riservate ai clienti." },
+        { title: "Accesso", text: "Gli account cliente richiedono approvazione amministratore." },
+        { title: "Supporto", text: "Priorita e tempi di risposta possono essere configurati nell'area admin." }
+      ]
     }
   };
 }
