@@ -507,8 +507,9 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div>
-        <strong>SPBnext</strong>
+        <strong>SPB NEXT di Fabiola Vergas Barrera</strong>
         <p>{t.footer.company}</p>
+        <p>P.IVA IT-05628310269 · <a href="mailto:info@spbnext.com">info@spbnext.com</a></p>
       </div>
       <nav>
         <Link to="/contact">{t.footer.privacy}</Link>

@@ -777,6 +777,14 @@ p {
   color: rgba(255, 255, 255, 0.76);
 }
 
+.site-footer p {
+  margin-bottom: 6px;
+}
+
+.site-footer p:last-child {
+  margin-bottom: 0;
+}
+
 .site-footer nav {
   display: flex;
   gap: 16px;
