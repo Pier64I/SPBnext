@@ -115,7 +115,6 @@ function Home() {
     <section className="home-stage">
       <div className="home-hero">
         <div className="home-copy">
-          <img className="hero-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
           <h1>
             <span>{t.hero.titleAccent}</span>
             {t.hero.titleMain}
@@ -133,6 +132,7 @@ function Home() {
           <strong>{t.hero.innovation}</strong>
         </div>
         <div className="hero-visual">
+          <img className="visual-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
           <img src="/assets/home-tech-scene.png" alt="" />
         </div>
       </div>
