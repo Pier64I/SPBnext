@@ -121,14 +121,6 @@ function Home() {
             <Link className="btn outline" to="/register"><UserPlus size={18} />{t.cta.register}</Link>
           </div>
         </div>
-        <div className="innovation-claim">
-          <span>{t.hero.partner}</span>
-          <strong>{t.hero.innovation}</strong>
-        </div>
-        <div className="hero-visual">
-          <img className="visual-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
-          <img src="/assets/home-tech-scene.png" alt="" />
-        </div>
       </div>
 
       <div className="home-panel">

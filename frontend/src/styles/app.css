@@ -206,6 +206,22 @@ p {
   margin-top: 28px;
 }
 
+.home-copy .actions {
+  margin-top: 0;
+  align-items: center;
+}
+
+.home-copy .btn {
+  min-height: 50px;
+  padding-inline: 20px;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.home-copy .btn.outline {
+  flex-basis: 290px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -339,10 +355,7 @@ p {
 
 .home-stage {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 85% 12%, rgba(249, 115, 22, 0.28), transparent 24%),
-    radial-gradient(circle at 38% 5%, rgba(124, 58, 237, 0.35), transparent 28%),
-    linear-gradient(180deg, #050914 0%, #111b33 42%, #f8f3ff 43%, #ffffff 100%);
+  background: linear-gradient(180deg, #050914 0%, #111b33 48%, #f8f3ff 49%, #ffffff 100%);
 }
 
 .home-stage + * {
@@ -351,25 +364,23 @@ p {
 
 .home-hero {
   position: relative;
-  min-height: 640px;
-  display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1fr) minmax(180px, 0.45fr);
-  align-items: center;
-  gap: 22px;
-  padding: 24px clamp(24px, 5vw, 64px) 84px;
+  min-height: clamp(560px, 49vw, 780px);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 clamp(24px, 5vw, 72px) 54px;
   overflow: hidden;
   color: #fff;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 20, 0.58), rgba(5, 9, 20, 0.08) 42%, rgba(5, 9, 20, 0.22)),
+    url("/assets/home-hero-full.png") center/cover no-repeat;
 }
 
 .home-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  background: linear-gradient(180deg, rgba(5, 9, 20, 0.52), transparent 30%, rgba(5, 9, 20, 0.2));
+  pointer-events: none;
 }
 
 .home-copy,
@@ -381,8 +392,13 @@ p {
 }
 
 .home-copy {
-  align-self: end;
-  padding-bottom: 34px;
+  width: min(760px, 100%);
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background: rgba(5, 9, 20, 0.38);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
 }
 
 .home-copy h1 {
@@ -837,7 +853,7 @@ p {
 
 @media (max-width: 1320px) {
   .home-hero {
-    grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 1fr);
+    min-height: clamp(520px, 58vw, 700px);
   }
 
   .innovation-claim {
@@ -863,9 +879,9 @@ p {
   }
 
   .home-hero {
-    grid-template-columns: 1fr;
     min-height: auto;
-    padding: 28px 18px 86px;
+    padding: 360px 18px 36px;
+    background-position: center top;
   }
 
   .tech-orbit,
@@ -903,6 +919,14 @@ p {
     margin-top: -48px;
     padding: 16px;
     border-radius: 20px 20px 0 0;
+  }
+
+  .home-copy {
+    padding: 14px;
+  }
+
+  .home-copy .btn {
+    width: 100%;
   }
 
   .home-service-grid,
