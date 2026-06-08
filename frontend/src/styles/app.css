@@ -364,15 +364,17 @@ p {
 
 .home-hero {
   position: relative;
-  min-height: clamp(560px, 49vw, 780px);
+  min-height: clamp(430px, 37.5vw, 768px);
   display: flex;
   align-items: flex-end;
-  padding: 0 clamp(24px, 5vw, 72px) 54px;
+  padding: 0 clamp(24px, 5vw, 72px) 42px;
   overflow: hidden;
   color: #fff;
   background:
-    linear-gradient(90deg, rgba(5, 9, 20, 0.58), rgba(5, 9, 20, 0.08) 42%, rgba(5, 9, 20, 0.22)),
-    url("/assets/home-hero-full.png") center/cover no-repeat;
+    linear-gradient(90deg, rgba(5, 9, 20, 0.18), rgba(5, 9, 20, 0.02) 42%, rgba(5, 9, 20, 0.16)),
+    radial-gradient(circle at 12% 50%, rgba(76, 29, 149, 0.5), transparent 36%),
+    radial-gradient(circle at 84% 48%, rgba(249, 115, 22, 0.28), transparent 34%),
+    #050914 url("/assets/home-hero-full.png") center top / contain no-repeat;
 }
 
 .home-hero::before {
@@ -853,7 +855,7 @@ p {
 
 @media (max-width: 1320px) {
   .home-hero {
-    min-height: clamp(520px, 58vw, 700px);
+    min-height: clamp(360px, 37.5vw, 620px);
   }
 
   .innovation-claim {
@@ -880,7 +882,8 @@ p {
 
   .home-hero {
     min-height: auto;
-    padding: 360px 18px 36px;
+    padding: 42vw 18px 28px;
+    background-size: contain;
     background-position: center top;
   }
 
