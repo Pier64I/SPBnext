@@ -3,7 +3,7 @@ services:
     name: spbnext-api
     runtime: node
     rootDir: backend
-    buildCommand: npm ci
+    buildCommand: npm install
     preDeployCommand: npm run migrate
     startCommand: npm start
     autoDeploy: true
@@ -39,7 +39,7 @@ services:
     name: spbnext-frontend
     runtime: static
     rootDir: frontend
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     staticPublishPath: dist
     autoDeploy: true
     envVars:
