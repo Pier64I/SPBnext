@@ -1,7 +1,33 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
-import { Activity, BarChart3, FileText, Globe2, Lock, Mail, Menu, Newspaper, ShieldCheck, Ticket, UserPlus } from "lucide-react";
+import {
+  Activity,
+  BarChart3,
+  Bot,
+  Code2,
+  Cpu,
+  FileText,
+  Globe,
+  Globe2,
+  Headphones,
+  Leaf,
+  Lightbulb,
+  Lock,
+  Mail,
+  Menu,
+  Network,
+  Newspaper,
+  Package,
+  Puzzle,
+  RefreshCw,
+  Rocket,
+  Shield,
+  ShieldCheck,
+  Ticket,
+  UserPlus,
+  Users
+} from "lucide-react";
 import "./styles/app.css";
 import { copy, services, serviceSlugs } from "./data/content.js";
 import { api } from "./services/api.js";
@@ -28,13 +54,13 @@ function AppShell() {
       <header className="site-header">
         <Link to="/" className="brand" aria-label="SPBnext home">
           <img className="brand-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
-          <span>SPBnext</span>
         </Link>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <Menu size={22} />
         </button>
         <nav className={menuOpen ? "main-nav open" : "main-nav"}>
           <NavLink to="/">{t.nav.home}</NavLink>
+          <NavLink to="/about">{t.nav.about}</NavLink>
           <NavLink to="/services">{t.nav.services}</NavLink>
           <NavLink to="/support">{t.nav.support}</NavLink>
           <NavLink to="/news">{t.nav.news}</NavLink>
@@ -43,10 +69,10 @@ function AppShell() {
           <NavLink to="/admin">{t.nav.admin}</NavLink>
         </nav>
         <div className="language-switcher" aria-label={t.language}>
-          <Globe2 size={18} />
           {["it", "es", "en"].map((item) => (
             <button key={item} className={language === item ? "active" : ""} onClick={() => switchLanguage(item)}>
-              {item.toUpperCase()}
+              <span>{languageFlag[item]}</span>
+              {languageNames[item]}
             </button>
           ))}
         </div>
@@ -54,6 +80,7 @@ function AppShell() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/support" element={<Support />} />
@@ -72,7 +99,93 @@ function AppShell() {
 
 function Home() {
   const { t, language } = useLang();
-  const featured = t.newsItems.slice(0, 2);
+  const serviceIcons = {
+    "reti-informatiche": Network,
+    elettronica: Cpu,
+    sicurezza: Shield,
+    automazione: Bot,
+    wms: Package,
+    "energia-green": Leaf,
+    "portali-web": Globe,
+    "programmi-app": Code2,
+    servizi: Headphones
+  };
+
+  return (
+    <section className="home-stage">
+      <div className="home-hero">
+        <div className="home-copy">
+          <img className="hero-logo" src="/assets/spbnext-logo.jpg" alt="SPB Next" />
+          <h1>
+            <span>{t.hero.titleAccent}</span>
+            {t.hero.titleMain}
+          </h1>
+          <p>{t.hero.subtitle}</p>
+          <strong>{t.hero.promise}</strong>
+          <div className="actions">
+            <Link className="btn primary" to="/contact"><Mail size={18} />{t.cta.info}</Link>
+            <Link className="btn orange" to="/support"><Headphones size={18} />{t.cta.ticket}</Link>
+            <Link className="btn outline" to="/register"><UserPlus size={18} />{t.cta.register}</Link>
+          </div>
+        </div>
+        <div className="innovation-claim">
+          <span>{t.hero.partner}</span>
+          <strong>{t.hero.innovation}</strong>
+        </div>
+        <div className="tech-orbit" aria-hidden="true">
+          <div className="tech-building"><span>SPB</span></div>
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <Cpu className="float-icon cpu" />
+          <ShieldCheck className="float-icon security" />
+          <Leaf className="float-icon green" />
+          <Bot className="float-icon bot" />
+          <Globe2 className="float-icon web" />
+        </div>
+      </div>
+
+      <div className="home-panel">
+        <div className="home-service-grid">
+          {serviceSlugs.map((slug, index) => {
+            const Icon = serviceIcons[slug] || Activity;
+            return (
+              <Link className={`home-service-card tone-${index}`} to={`/services/${slug}`} key={slug}>
+                <Icon size={42} />
+                <h3>{services[language][slug].title}</h3>
+                <p>{services[language][slug].summary}</p>
+                <span>{t.home.discover}</span>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="quick-grid">
+          {quickLinks(t).map(({ to, icon: Icon, title, text }) => (
+            <Link className="quick-card" to={to} key={title}>
+              <Icon size={34} />
+              <div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="brand-strip">
+        {t.home.badges.map((badge, index) => {
+          const badgeIcons = [Users, Puzzle, RefreshCw, Rocket, Globe2];
+          const Icon = badgeIcons[index] || ShieldCheck;
+          return (
+            <div key={badge}>
+              <Icon />
+              <span>{badge}</span>
+            </div>
+          );
+        })}
+        <img src="/assets/spbnext-logo.jpg" alt="SPB Next" />
+      </div>
+    </section>
+  );
 
   return (
     <>
@@ -128,6 +241,26 @@ function Home() {
         <Link className="btn primary" to="/contact">{t.nav.contact}</Link>
       </section>
     </>
+  );
+}
+
+function About() {
+  const { t } = useLang();
+  return (
+    <section className="section two-column">
+      <div>
+        <p className="eyebrow">{t.nav.about}</p>
+        <h1>{t.about.title}</h1>
+        <p>{t.about.text}</p>
+        <div className="status-list">
+          {t.home.badges.map((item) => <span key={item}>{item}</span>)}
+        </div>
+      </div>
+      <FormCard title={t.contact.formTitle}>
+        <p>{t.contact.subtitle}</p>
+        <Link className="btn primary" to="/contact">{t.cta.info}</Link>
+      </FormCard>
+    </section>
   );
 }
 
@@ -452,6 +585,29 @@ const languageOptions = [
   { value: "es", label: "Español" },
   { value: "en", label: "English" }
 ];
+
+const languageNames = {
+  it: "Italiano",
+  es: "Español",
+  en: "English"
+};
+
+const languageFlag = {
+  it: "IT",
+  es: "ES",
+  en: "EN"
+};
+
+function quickLinks(t) {
+  return [
+    { to: "/client", icon: Lock, title: t.home.quick.clientTitle, text: t.home.quick.clientText },
+    { to: "/support", icon: Headphones, title: t.home.quick.supportTitle, text: t.home.quick.supportText },
+    { to: "/news", icon: Newspaper, title: t.home.quick.newsTitle, text: t.home.quick.newsText },
+    { to: "/contact", icon: Mail, title: t.home.quick.infoTitle, text: t.home.quick.infoText },
+    { to: "/services/sicurezza", icon: ShieldCheck, title: t.home.quick.securityTitle, text: t.home.quick.securityText },
+    { to: "/services/automazione", icon: Lightbulb, title: t.home.quick.innovationTitle, text: t.home.quick.innovationText }
+  ];
+}
 
 function priorityOptions(t) {
   return [

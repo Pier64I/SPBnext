@@ -65,6 +65,11 @@ function localeCopy(heroTitle, heroSubtitle, info, ticket, login, register) {
     hero: {
       eyebrow: isEn ? "Technology consulting portal" : isEs ? "Portal de consultoría tecnológica" : "Portale consulenza tecnologica",
       title: heroTitle,
+      titleAccent: isEn ? "Technology solutions" : isEs ? "Soluciones tecnologicas" : "Soluzioni tecnologiche",
+      titleMain: isEn ? "for your future" : isEs ? "para tu futuro" : "per il tuo futuro",
+      promise: isEn ? "Technology. Reliability. Innovation." : isEs ? "Tecnologia. Fiabilidad. Innovacion." : "Tecnologia. Affidabilita. Innovazione.",
+      partner: isEn ? "Your partner" : isEs ? "Tu partner" : "Il tuo partner",
+      innovation: isEn ? "for innovation" : isEs ? "para la innovacion" : "per l'innovazione",
       subtitle: heroSubtitle
     },
     cta: { info, ticket, login, register },
@@ -72,8 +77,12 @@ function localeCopy(heroTitle, heroSubtitle, info, ticket, login, register) {
       servicesEyebrow: labels.services,
       servicesTitle: isEn ? "Public service areas" : isEs ? "Áreas de servicio públicas" : "Aree servizi pubbliche",
       newsTitle: isEn ? "Featured news" : isEs ? "Noticias destacadas" : "News in evidenza",
-      quickContacts: isEn ? "Quick contacts" : isEs ? "Contactos rápidos" : "Contatti rapidi"
+      quickContacts: isEn ? "Quick contacts" : isEs ? "Contactos rápidos" : "Contatti rapidi",
+      discover: isEn ? "Discover more" : isEs ? "Descubre mas" : "Scopri di piu",
+      badges: localizedHomeText(isEn, isEs).badges,
+      quick: localizedHomeText(isEn, isEs).quick
     },
+    about: labels.about,
     services: {
       title: labels.services,
       subtitle: isEn ? "Explore every consulting and implementation area." : isEs ? "Explora cada área de consultoría e implementación." : "Esplora ogni area di consulenza e realizzazione."
@@ -114,8 +123,73 @@ function localeCopy(heroTitle, heroSubtitle, info, ticket, login, register) {
     ticket: labels.ticket,
     form: labels.form,
     serviceLabels: labels.serviceLabels,
+    about: localizedHomeText(isEn, isEs).about,
+    homeQuick: localizedHomeText(isEn, isEs).quick,
     footer: labels.footer,
     newsItems: labels.newsItems
+  };
+}
+
+function localizedHomeText(isEn, isEs) {
+  if (isEn) {
+    return {
+      about: { title: "Your technology partner", text: "SPB Next combines networks, security, automation, software, energy and web portals into practical solutions for companies that want reliable growth." },
+      badges: ["Qualified expert team", "Tailored solutions", "Continuous support", "Advanced technologies", "International presence"],
+      quick: {
+        clientTitle: "Reserved customer area",
+        clientText: "Access documents, tickets, communications and request history.",
+        supportTitle: "Support and tickets",
+        supportText: "Open a ticket and follow request status in real time.",
+        newsTitle: "News and updates",
+        newsText: "Stay informed about news, events and technologies.",
+        infoTitle: "Information request",
+        infoText: "Contact us for information and tailored solutions.",
+        securityTitle: "Security and reliability",
+        securityText: "We protect data, systems and business processes.",
+        innovationTitle: "Continuous innovation",
+        innovationText: "Advanced technologies to support your growth."
+      }
+    };
+  }
+
+  if (isEs) {
+    return {
+      about: { title: "Tu partner tecnologico", text: "SPB Next integra redes, seguridad, automatizacion, software, energia y portales web en soluciones concretas para empresas que quieren crecer con tecnologias fiables." },
+      badges: ["Equipo experto cualificado", "Soluciones personalizadas", "Soporte continuo", "Tecnologias avanzadas", "Presencia internacional"],
+      quick: {
+        clientTitle: "Area clientes reservada",
+        clientText: "Accede a documentos, tickets, comunicaciones e historial.",
+        supportTitle: "Asistencia y tickets",
+        supportText: "Abre un ticket y sigue el estado en tiempo real.",
+        newsTitle: "Noticias y novedades",
+        newsText: "Mantente informado sobre novedades, eventos y tecnologias.",
+        infoTitle: "Solicitud de informacion",
+        infoText: "Contactanos para informacion y soluciones a medida.",
+        securityTitle: "Seguridad y fiabilidad",
+        securityText: "Protegemos datos, sistemas y procesos empresariales.",
+        innovationTitle: "Innovacion continua",
+        innovationText: "Tecnologias avanzadas para acompanar tu crecimiento."
+      }
+    };
+  }
+
+  return {
+    about: { title: "Il tuo partner tecnologico", text: "SPB Next integra reti, sicurezza, automazione, software, energia e portali web in soluzioni concrete per imprese che vogliono crescere con tecnologie affidabili." },
+    badges: ["Team di esperti qualificati", "Soluzioni personalizzate", "Supporto continuativo", "Tecnologie all'avanguardia", "Presenza internazionale"],
+    quick: {
+      clientTitle: "Area clienti riservata",
+      clientText: "Accedi a documenti, ticket, comunicazioni e storico richieste.",
+      supportTitle: "Assistenza e ticket",
+      supportText: "Apri un ticket e segui lo stato delle richieste in tempo reale.",
+      newsTitle: "News e aggiornamenti",
+      newsText: "Resta aggiornato su novita, eventi e tecnologie.",
+      infoTitle: "Richiesta informazioni",
+      infoText: "Contattaci per ricevere informazioni e soluzioni su misura.",
+      securityTitle: "Sicurezza e affidabilita",
+      securityText: "Proteggiamo dati, sistemi e processi aziendali.",
+      innovationTitle: "Innovazione continua",
+      innovationText: "Tecnologie avanzate per accompagnare la crescita."
+    }
   };
 }
 
@@ -132,7 +206,7 @@ const serviceLabels = {
 };
 
 const itLabels = {
-  nav: { home: "Home", services: "Servizi", support: "Assistenza", news: "News", contact: "Contatti", client: "Area clienti", admin: "Admin" },
+  nav: { home: "Home", about: "Chi siamo", services: "Servizi", support: "Assistenza", news: "News", contact: "Contatti", client: "Area clienti", admin: "Admin" },
   services: "Servizi",
   support: "Assistenza",
   news: "News",
@@ -149,7 +223,7 @@ const itLabels = {
 
 const enLabels = {
   ...itLabels,
-  nav: { home: "Home", services: "Services", support: "Support", news: "News", contact: "Contact", client: "Customer area", admin: "Admin" },
+  nav: { home: "Home", about: "About us", services: "Services", support: "Support", news: "News", contact: "Contact", client: "Customer area", admin: "Admin" },
   serviceLabels: Object.fromEntries(Object.entries(services.en).map(([key, value]) => [key, value.title])),
   adminModules: ["Customer management", "New customer approval", "User management", "Multilingual content", "Reserved documents", "Information requests", "Access logs"],
   ticket: { title: "New ticket", submit: "Send ticket", subject: "Subject", category: "Category", priority: "Priority", description: "Problem description", other: "Other", low: "Low", medium: "Medium", high: "High", urgent: "Urgent" },
@@ -160,7 +234,7 @@ const enLabels = {
 
 const esLabels = {
   ...itLabels,
-  nav: { home: "Home", services: "Servicios", support: "Asistencia", news: "Noticias", contact: "Contacto", client: "Área clientes", admin: "Admin" },
+  nav: { home: "Home", about: "Quienes somos", services: "Servicios", support: "Asistencia", news: "Noticias", contact: "Contacto", client: "Área clientes", admin: "Admin" },
   serviceLabels: Object.fromEntries(Object.entries(services.es).map(([key, value]) => [key, value.title])),
   adminModules: ["Gestión clientes", "Aprobación nuevos clientes", "Gestión usuarios", "Contenido multilingüe", "Documentos reservados", "Solicitudes información", "Logs de acceso"],
   ticket: { title: "Nuevo ticket", submit: "Enviar ticket", subject: "Asunto", category: "Categoría", priority: "Prioridad", description: "Descripción problema", other: "Otro", low: "Baja", medium: "Media", high: "Alta", urgent: "Urgente" },
