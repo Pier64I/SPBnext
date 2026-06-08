@@ -4,6 +4,7 @@ services:
     runtime: node
     rootDir: backend
     buildCommand: npm ci
+    preDeployCommand: npm run migrate
     startCommand: npm start
     autoDeploy: true
     envVars:
