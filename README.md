@@ -64,10 +64,12 @@ npm run build --prefix frontend
 ## Pubblicazione
 
 La configurazione pronta per VPS e Docker Compose e in [docs/PUBBLICAZIONE.md](docs/PUBBLICAZIONE.md).
+Per pubblicare su Render dal repository GitHub, usa [docs/RENDER.md](docs/RENDER.md).
 
 File principali:
 
 - `docker-compose.prod.yml`
+- `render.yaml`
 - `.env.production.example`
 - `backend/Dockerfile`
 - `frontend/Dockerfile`
