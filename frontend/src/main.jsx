@@ -132,15 +132,8 @@ function Home() {
           <span>{t.hero.partner}</span>
           <strong>{t.hero.innovation}</strong>
         </div>
-        <div className="tech-orbit" aria-hidden="true">
-          <div className="tech-building"><span>SPB</span></div>
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <Cpu className="float-icon cpu" />
-          <ShieldCheck className="float-icon security" />
-          <Leaf className="float-icon green" />
-          <Bot className="float-icon bot" />
-          <Globe2 className="float-icon web" />
+        <div className="hero-visual">
+          <img src="/assets/home-tech-scene.png" alt="" />
         </div>
       </div>
 
@@ -593,9 +586,9 @@ const languageNames = {
 };
 
 const languageFlag = {
-  it: "IT",
-  es: "ES",
-  en: "EN"
+  it: "🇮🇹",
+  es: "🇪🇸",
+  en: "🇬🇧"
 };
 
 function quickLinks(t) {
